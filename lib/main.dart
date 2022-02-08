@@ -25,6 +25,7 @@ class App extends StatelessWidget {
       title: Strings.appTitle,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRouter.counter,
       onGenerateRoute: AppRouter.onGenerateRoute,
