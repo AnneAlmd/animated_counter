@@ -1,6 +1,6 @@
 import 'package:counter_animated/logic/cubit/theme_cubit.dart';
 import 'package:counter_animated/logic/debug/app_bloc_observer.dart';
-import 'package:counter_animated/presentation/screens/counter_app.dart';
+import 'package:counter_animated/counter_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +23,7 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
       ],
-      child: CounterApp(),
+      child: const CounterApp(),
     );
   }
 }

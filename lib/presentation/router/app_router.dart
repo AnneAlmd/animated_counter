@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants/strings.dart';
 import '../../core/exceptions/route_exception.dart';
-import '../screens/home_screen/counter_screen.dart';
+import '../screens/counter_screen/counter_screen.dart';
 
 class AppRouter {
   static const String counter = 'counter';
@@ -13,9 +13,7 @@ class AppRouter {
     switch (settings.name) {
       case counter:
         return MaterialPageRoute(
-          builder: (_) => const CounterScreen(
-            title: Strings.homeScreenTitle,
-          ),
+          builder: (_) => const CounterScreen(),
         );
       default:
         throw const RouteException('Route not found!');
