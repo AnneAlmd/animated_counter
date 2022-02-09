@@ -1,10 +1,8 @@
+import 'package:counter_animated/logic/cubit/theme_cubit.dart';
+import 'package:counter_animated/logic/debug/app_bloc_observer.dart';
+import 'package:counter_animated/presentation/screens/counter_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'core/constants/strings.dart';
-import 'core/themes/app_theme.dart';
-import 'logic/debug/app_bloc_observer.dart';
-import 'presentation/router/app_router.dart';
 
 void main() {
   BlocOverrides.runZoned(
@@ -21,14 +19,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: Strings.appTitle,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRouter.counter,
-      onGenerateRoute: AppRouter.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
+      ],
+      child: CounterApp(),
     );
   }
 }
