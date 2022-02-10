@@ -27,9 +27,9 @@ class AppTheme {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: lightPrimaryColor,
       secondary: lightAccentColor,
+      background: lightBackgroundColor,
     ),
     brightness: Brightness.light,
-    backgroundColor: lightBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 
@@ -37,6 +37,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: darkPrimaryColor,
       secondary: darkAccentColor,
+      background: darkBackgroundColor,
     ),
     backgroundColor: darkBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
