@@ -1,5 +1,7 @@
+import 'package:counter_animated/logic/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterSlider extends StatefulWidget {
   const CounterSlider({
@@ -136,12 +138,8 @@ class _Stepper2State extends State<CounterSlider>
     RenderBox box = context.findRenderObject() as RenderBox;
     Offset local = box.globalToLocal(globalPosition);
     _startAnimationPosX = ((local.dx * 0.75) / box.size.width) - 0.4;
-    _startAnimationPosY = ((local.dy * 0.75) / box.size.height) - 0.4;
-    if (widget.direction == Axis.horizontal) {
-      return ((local.dx * 0.75) / box.size.width) - 0.4;
-    } else {
-      return ((local.dy * 0.75) / box.size.height) - 0.4;
-    }
+
+    return ((local.dx * 0.75) / box.size.width) - 0.4;
   }
 
   void _onPanStart(DragStartDetails details) {
@@ -157,11 +155,9 @@ class _Stepper2State extends State<CounterSlider>
     _controller.stop();
 
     if (_controller.value <= -0.20) {
-      //setState(() => isHor ? _value-- : _value++);
-
+      context.read<CounterCubit>().decrement();
     } else if (_controller.value >= 0.20) {
-      //setState(() => isHor ? _value++ : _value--);
-
+      context.read<CounterCubit>().increment();
     }
 
     final SpringDescription _kDefaultSpring =

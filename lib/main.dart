@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'logic/cubit/counter_cubit.dart';
+
 void main() async {
   BlocOverrides.runZoned(
     () {
@@ -33,6 +35,7 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
+        BlocProvider<CounterCubit>(create: (context) => CounterCubit()),
       ],
       child: const CounterApp(),
     );
