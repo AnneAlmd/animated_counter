@@ -104,7 +104,7 @@ class _Stepper2State extends State<CounterSlider>
                   child: Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: Material(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.primary,
                       shape: const CircleBorder(),
                       elevation: 5.0,
                       child: Center(
@@ -115,12 +115,9 @@ class _Stepper2State extends State<CounterSlider>
                             return ScaleTransition(
                                 child: child, scale: animation);
                           },
-                          child: Text(
-                            '$_value',
-                            key: ValueKey<int>(_value),
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 50.0),
+                          child: Icon(
+                            Icons.circle,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       ),
