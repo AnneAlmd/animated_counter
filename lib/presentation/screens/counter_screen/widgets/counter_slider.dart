@@ -66,15 +66,9 @@ class _Stepper2State extends State<CounterSlider>
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.direction == Axis.horizontal) {
-      _animation = Tween<Offset>(
-              begin: const Offset(0.0, 0.0), end: const Offset(1.5, 0.0))
-          .animate(_controller);
-    } else {
-      _animation = Tween<Offset>(
-              begin: const Offset(0.0, 0.0), end: const Offset(0.0, 1.5))
-          .animate(_controller);
-    }
+    _animation = Tween<Offset>(
+            begin: const Offset(0.0, 0.0), end: const Offset(1.5, 0.0))
+        .animate(_controller);
   }
 
   // !test = init();
@@ -93,16 +87,13 @@ class _Stepper2State extends State<CounterSlider>
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
-              Positioned(
-                left: widget.direction == Axis.horizontal ? 10.0 : null,
-                bottom: widget.direction == Axis.horizontal ? null : 10.0,
-                child:
-                    const Icon(Icons.remove, size: 40.0, color: Colors.white),
+              const Positioned(
+                left: 10.0,
+                child: Icon(Icons.remove, size: 40.0, color: Colors.white),
               ),
-              Positioned(
-                right: widget.direction == Axis.horizontal ? 10.0 : null,
-                top: widget.direction == Axis.horizontal ? null : 10.0,
-                child: const Icon(Icons.add, size: 40.0, color: Colors.white),
+              const Positioned(
+                right: 10.0,
+                child: Icon(Icons.add, size: 40.0, color: Colors.white),
               ),
               GestureDetector(
                 onHorizontalDragStart: _onPanStart,
@@ -110,24 +101,27 @@ class _Stepper2State extends State<CounterSlider>
                 onHorizontalDragEnd: _onPanEnd,
                 child: SlideTransition(
                   position: _animation,
-                  child: Material(
-                    color: Theme.of(context).colorScheme.background,
-                    shape: const CircleBorder(),
-                    elevation: 5.0,
-                    child: Center(
-                      child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 500),
-                        transitionBuilder:
-                            (Widget child, Animation<double> animation) {
-                          return ScaleTransition(
-                              child: child, scale: animation);
-                        },
-                        child: Text(
-                          '$_value',
-                          key: ValueKey<int>(_value),
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 50.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Material(
+                      color: Theme.of(context).colorScheme.background,
+                      shape: const CircleBorder(),
+                      elevation: 5.0,
+                      child: Center(
+                        child: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 500),
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) {
+                            return ScaleTransition(
+                                child: child, scale: animation);
+                          },
+                          child: Text(
+                            '$_value',
+                            key: ValueKey<int>(_value),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontSize: 50.0),
+                          ),
                         ),
                       ),
                     ),
@@ -164,36 +158,23 @@ class _Stepper2State extends State<CounterSlider>
 
   void _onPanEnd(DragEndDetails details) {
     _controller.stop();
-    bool isHor = widget.direction == Axis.horizontal;
-    bool changed = false;
+
     if (_controller.value <= -0.20) {
-      setState(() => isHor ? _value-- : _value++);
-      changed = true;
+      //setState(() => isHor ? _value-- : _value++);
+
     } else if (_controller.value >= 0.20) {
-      setState(() => isHor ? _value++ : _value--);
-      changed = true;
-    }
-    if (widget.withSpring) {
-      final SpringDescription _kDefaultSpring =
-          SpringDescription.withDampingRatio(
-        mass: 0.9,
-        stiffness: 250.0,
-        ratio: 0.6,
-      );
-      if (widget.direction == Axis.horizontal) {
-        _controller.animateWith(
-            SpringSimulation(_kDefaultSpring, _startAnimationPosX, 0.0, 0.0));
-      } else {
-        _controller.animateWith(
-            SpringSimulation(_kDefaultSpring, _startAnimationPosY, 0.0, 0.0));
-      }
-    } else {
-      _controller.animateTo(0.0,
-          curve: Curves.bounceOut, duration: const Duration(milliseconds: 500));
+      //setState(() => isHor ? _value++ : _value--);
+
     }
 
-    if (changed) {
-      widget.onChanged(_value);
-    }
+    final SpringDescription _kDefaultSpring =
+        SpringDescription.withDampingRatio(
+      mass: 0.9,
+      stiffness: 250.0,
+      ratio: 0.6,
+    );
+
+    _controller.animateWith(
+        SpringSimulation(_kDefaultSpring, _startAnimationPosX, 0.0, 0.0));
   }
 }
