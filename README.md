@@ -1,6 +1,16 @@
 # counter_animated
+Flutter project in construction
 
-A new Flutter project.
+## Packages
+  sizer: ^2.0.15
+  simple_animations: ^3.2.0
+  hydrated_bloc: ^8.0.0
+  flutter_bloc: ^8.0.1
+  flare_flutter: ^3.0.2
+  animate_do: ^2.1.0
+  device_preview: ^1.0.0
+  path_provider: ^2.0.8
+  bloc: ^8.0.2
 
 ## Getting Started
 
