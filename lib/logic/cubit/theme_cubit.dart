@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:counter_animated/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 part 'theme_state.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/strings.dart';
 import '../../core/exceptions/route_exception.dart';
 import '../screens/counter_screen/counter_screen.dart';
 

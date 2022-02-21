@@ -18,17 +18,14 @@ class CounterScreen extends StatelessWidget {
           // ignore: avoid_print
           Positioned(
             bottom: MediaQuery.of(context).size.width * 0.15,
-            child: CounterSlider(
-              initialValue: 0,
-              onChanged: (int value) => print('new value $value'),
-            ),
+            child: const CounterSlider(),
           ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.05,
             child: Stack(
               alignment: Alignment.center,
-              children: const [
-                AnimatedCircle(),
+              children: [
+                const AnimatedCircle(),
                 CounterValue(),
               ],
             ),

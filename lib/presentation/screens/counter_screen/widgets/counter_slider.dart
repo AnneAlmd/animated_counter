@@ -6,26 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CounterSlider extends StatefulWidget {
   const CounterSlider({
     Key? key,
-    required this.initialValue,
-    required this.onChanged,
-    this.direction = Axis.horizontal,
-    this.withSpring = true,
   }) : super(key: key);
-
-  /// the orientation of the stepper its horizontal or vertical.
-  final Axis direction;
-
-  /// the initial value of the stepper
-  final int initialValue;
-
-  /// called whenever the value of the stepper changed
-  final ValueChanged<int> onChanged;
-
-  /// if you want a springSimulation to happens the the user let go the stepper
-  /// defaults to true
-  final bool withSpring;
-
-  // Coded By Raj Chowdhury
 
   @override
   _Stepper2State createState() => _Stepper2State();
@@ -35,28 +16,21 @@ class _Stepper2State extends State<CounterSlider>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _animation;
-  late int _value;
+
   late double _startAnimationPosX;
-  late double _startAnimationPosY;
 
   @override
   void initState() {
     super.initState();
-    _value = widget.initialValue;
+
     _controller =
         AnimationController(vsync: this, lowerBound: -0.5, upperBound: 0.5);
     _controller.value = 0.0;
     _controller.addListener(() {});
 
-    if (widget.direction == Axis.horizontal) {
-      _animation = Tween<Offset>(
-              begin: const Offset(0.0, 0.0), end: const Offset(1.5, 0.0))
-          .animate(_controller);
-    } else {
-      _animation = Tween<Offset>(
-              begin: const Offset(0.0, 0.0), end: const Offset(0.0, 1.5))
-          .animate(_controller);
-    }
+    _animation = Tween<Offset>(
+            begin: const Offset(0.0, 0.0), end: const Offset(1.5, 0.0))
+        .animate(_controller);
   }
 
   @override
